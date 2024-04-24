@@ -5,33 +5,35 @@ import { jwtDecode } from 'jwt-decode';
 import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CheckoutService {
-  constructor(private _HttpClient:HttpClient) { };
+  constructor(private _HttpClient: HttpClient) {}
 
-  userData:any;
-  userId:string = '';
+  userData: any;
+  userId: string = '';
 
   saveUserData() {
-    if (localStorage.getItem('userToken') != null ) {
-      let encodeToken:any = localStorage.getItem('userToken');
+    if (localStorage.getItem('userToken') != null) {
+      let encodeToken: any = localStorage.getItem('userToken');
       let decodeToken = jwtDecode(encodeToken);
       this.userData = decodeToken;
       this.userId = this.userData.id;
     }
-  };
+  }
   // Online Payment
-  checkout(cardID:string, userData:object): Observable<any> {
-    return this._HttpClient.post
-    (
-      `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cardID}?url=http:https://ahmed1999-1999.github.io/angular-ecommerce-app`,
+  checkout(cardID: string, userData: object): Observable<any> {
+    return this._HttpClient.post(
+      `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cardID}?https://ecommerce-angular-app.vercel.app/`,
       {
-        shippingAddress: userData
-    });
+        shippingAddress: userData,
+      }
+    );
   }
   // All User Orders
-  userOrders(id:string): Observable<any> {
-    return this._HttpClient.get( `https://ecommerce.routemisr.com/api/v1/orders/user/${id}`)
+  userOrders(id: string): Observable<any> {
+    return this._HttpClient.get(
+      `https://ecommerce.routemisr.com/api/v1/orders/user/${id}`
+    );
   }
 }

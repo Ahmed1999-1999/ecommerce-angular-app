@@ -20,43 +20,95 @@ import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
-  { path: "",
-    component:BlankLayoutComponent,
+  {
+    path: '',
+    component: BlankLayoutComponent,
     canActivate: [authGuard],
     children: [
-      { path: "", redirectTo: "home", pathMatch: "full" },
-      { path: "home"         , component: HomeComponent        , title: "FreshCart | Home"            },
-      { path: "details/:id"  , component: DetailsComponent     , title: "FreshCart | Product Details" },
-      { path: "cart"         , component: CartComponent        , title: "FreshCart | Cart"            },
-      { path: "wishlist"     , component: WishlistComponent    , title: "FreshCart | Wishlist"        },
-      { path: "checkout/:id" , component: CheckoutComponent    , title: "FreshCart | Checkout"        },
-      { path: "products"     , component: ProductsComponent    , title: "FreshCart | Products"        },
-      { path: "categories"   , component: CategoriesComponent  , title: "FreshCart | Categories"      },
-      { path: "category/:id" , component: CategoryComponent    , title: "FreshCart | Category"        },
-      { path: "brands"       , component: BrandsComponent      , title: "FreshCart | Brands"          },
-      { path: "brand/:id"    , component: BrandComponent       , title: "FreshCart | Brand"           },
-      { path: "allorders"    , component: AllordersComponent   , title: "FreshCart | All Orders"      },
-      { path: "settings"     , component: SettingsComponent    , title: "FreshCart | Settings"        },
-    ]
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent, title: 'FreshCart | Home' },
+      {
+        path: 'details/:id',
+        component: DetailsComponent,
+        title: 'FreshCart | Product Details',
+      },
+      { path: 'cart', component: CartComponent, title: 'FreshCart | Cart' },
+      {
+        path: 'wishlist',
+        component: WishlistComponent,
+        title: 'FreshCart | Wishlist',
+      },
+      {
+        path: 'checkout/:id',
+        component: CheckoutComponent,
+        title: 'FreshCart | Checkout',
+      },
+      {
+        path: 'products',
+        component: ProductsComponent,
+        title: 'FreshCart | Products',
+      },
+      {
+        path: 'categories',
+        component: CategoriesComponent,
+        title: 'FreshCart | Categories',
+      },
+      {
+        path: 'category/:id',
+        component: CategoryComponent,
+        title: 'FreshCart | Category',
+      },
+      {
+        path: 'brands',
+        component: BrandsComponent,
+        title: 'FreshCart | Brands',
+      },
+      {
+        path: 'brand/:id',
+        component: BrandComponent,
+        title: 'FreshCart | Brand',
+      },
+      {
+        path: 'allorders',
+        component: AllordersComponent,
+        title: 'FreshCart | All Orders',
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent,
+        title: 'FreshCart | Settings',
+      },
+    ],
   },
 
-  { path: "",
-    component:AuthLayoutComponent,
+  {
+    path: '',
+    component: AuthLayoutComponent,
     children: [
-      { path: "login"         , component: LoginComponent     , title: "FreshCart | Login"    },
-      { path: "register"      , component: RegisterComponent  , title: "FreshCart | Register" },
-      { path: "settings"      , component: SettingsComponent  , title: "FreshCart | Settings" },
-    ]
+      { path: 'login', component: LoginComponent, title: 'FreshCart | Login' },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        title: 'FreshCart | Register',
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent,
+        title: 'FreshCart | Settings',
+      },
+    ],
   },
-  
-  { path: "**",
-    component: NotfoundComponent,
-    title: "Page Not Found"       
-  }
+
+  { path: '**', component: NotfoundComponent, title: 'Page Not Found' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration:'enabled',useHash:true})],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'enabled',
+      useHash: true,
+    }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
