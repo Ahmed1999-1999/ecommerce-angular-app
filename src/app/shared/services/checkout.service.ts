@@ -24,7 +24,7 @@ export class CheckoutService {
   // Online Payment
   checkout(cardID: string, userData: object): Observable<any> {
     return this._HttpClient.post(
-      `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cardID}?url=https://ecommerce-angular-app.vercel.app/`,
+      `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cardID}?url=https://ecommerce-angular-app.vercel.app/#/`,
       {
         shippingAddress: userData,
       }
