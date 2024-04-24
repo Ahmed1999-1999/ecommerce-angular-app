@@ -1,0 +1,90 @@
+<section class="bg-main-light p-4 my-5 rounded w-75 mx-auto shadow">
+  <h2 class="mb-4">Register Now:</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="handleForm()">
+
+    <!-- Name Form -->
+    <div class="mb-2">
+      <label for="name">Name:</label>
+      <input
+        #inputName
+        formControlName="name"
+        type="text"
+        id="name"
+        class="form-control">
+        <!-- validation alert -->
+        <div class="alert alert-danger mt-2" *ngIf="registerForm.get('name')?.errors && (registerForm.get('name')?.touched || inputName.value.length > 0)">
+          <p *ngIf="registerForm.get('name')?.getError('required')">Your name is required</p>
+          <p *ngIf="registerForm.get('name')?.getError('minlength')">Your name must be at least 3 chars</p>
+          <p *ngIf="registerForm.get('name')?.getError('maxlength')">Your name must be smaller than 20 chars</p>
+        </div>
+    </div>
+    <!-- Email Form -->
+    <div class="mb-2">
+      <label for="email">Email</label>
+      <input
+        #inputEmail
+        formControlName="email"
+        type="email"
+        id="email"
+        class="form-control">
+        <!-- validation alert -->
+        <div class="alert alert-danger mt-2" *ngIf="registerForm.get('email')?.errors && (registerForm.get('email')?.touched || inputEmail.value.length > 0)">
+          <p *ngIf="registerForm.get('email')?.getError('required')">Your email is required</p>
+          <p *ngIf="registerForm.get('email')?.getError('email')">email InValid Format</p>
+        </div>
+    </div>
+    <!-- Password Form -->
+    <div class="mb-2">
+      <label for="password">Password</label>
+      <input
+        #inputPassword
+        formControlName="password"
+        type="password"
+        id="password"
+        class="form-control">
+        <!-- validation alert -->
+        <div class="alert alert-danger mt-2" *ngIf="registerForm.get('password')?.errors && (registerForm.get('password')?.touched || inputPassword.value.length > 0)">
+          <p *ngIf="registerForm.get('password')?.getError('required')">Your password is required</p>
+          <p *ngIf="registerForm.get('password')?.getError('minlength')">Your password must be at least 6 chars</p>
+          <p *ngIf="registerForm.get('password')?.getError('pattern')">Your password password must start with upperCase then from 6 to 10</p>
+        </div>
+    </div>
+    <!-- Repassword Form -->
+    <div class="mb-2">
+      <label for="rePassword">rePassword</label>
+      <input
+        #inputRePassword
+        formControlName="rePassword"
+        type="password"
+        id="rePassword"
+        class="form-control">
+        <!-- validation alert -->
+        <div class="alert alert-danger mt-2" *ngIf="registerForm.get('rePassword')?.errors && (registerForm.get('rePassword')?.touched || inputRePassword.value.length > 0)">
+          <p *ngIf="registerForm.get('rePassword')?.getError('required')">Your rePassword is required</p>
+          <p *ngIf="registerForm.get('rePassword')?.getError('misMatch')">Passwords do NOT match!</p>
+        </div>
+    </div>
+    <!-- Phone Form -->
+    <div class="mb-2">
+      <label for="phone">Phone</label>
+      <input
+      #inputPhone
+      formControlName="phone"
+        type="tel"
+        id="phone"
+        class="form-control">
+        <!-- validation alert -->
+        <div class="alert alert-danger mt-2" *ngIf="registerForm.get('phone')?.errors && (registerForm.get('rePassword')?.touched || inputPhone.value.length > 0)">
+          <p *ngIf="registerForm.get('phone')?.getError('required')">Your phone is required</p>
+          <p *ngIf="registerForm.get('phone')?.getError('pattern')">accept only egypt phone numbers</p>
+        </div>
+    </div>
+
+    <!-- <button class="btn-main ms-auto d-block"> -->
+    <button [disabled]="registerForm.invalid" class="btn-main ms-auto d-block">
+      <i *ngIf="isLoading" class="fas fa-spin fa-spinner me-2"></i>
+      Register
+    </button>
+    <p *ngIf="msgError" class="mt-2 alert alert-danger">{{msgError}}</p>
+  </form>
+</section>

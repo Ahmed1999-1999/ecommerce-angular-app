@@ -1,0 +1,13 @@
+<section class="p-4 mx-3 my-3">
+  <h2 class="mb-5 h4">Shop by Brand</h2>
+  <div class="row gy-5">
+    <div class="col-sm-6 col-lg-4 col-xl-2 pt-2 category" *ngFor="let brand of brands">
+      <div>
+        <div [routerLink]="['/brand', brand._id]">
+          <img [src]="brand.image" [alt]="brand.name" class="w-100 mb-3" height="250px">
+          <h3 class="h5 fw-medium text-center">{{brand.name}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

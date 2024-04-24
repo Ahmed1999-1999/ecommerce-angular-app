@@ -1,0 +1,24 @@
+<section class="m-5 p-3 bg-body-tertiary">
+<h2 class="h4">All Orders:</h2>
+
+<ng-container *ngFor="let order of orders">
+  <h3 class="h5">Order ID: {{order.id}}</h3>
+  <p class="text-muted">Order date: <span class="text-black">{{order.createdAt | date }}</span></p>
+  <div class="payment-method">
+    <p class="text-muted">Payment Method: <span class="text-black">{{order.paymentMethodType}}</span></p>
+  </div>
+  <div class="total-price">
+    <p class="text-muted">Shipping: <span class="text-black">{{order.shippingPrice | currency}}</span></p>
+    <p class="text-muted">Tax: <span class="text-black">{{order.taxPrice | currency}}</span></p>
+    <p class="text-muted">Total price: <span class="text-black">{{order.shippingPrice + order.taxPrice + order.totalOrderPrice | currency}}</span></p>
+    <div class="row products" *ngFor="let order of orders">
+      <div class="col-12">
+      </div>
+    </div>
+  </div>
+  <hr>
+</ng-container>
+<div class="col-md-12" *ngIf="orders.length == 0">
+  <h2 class="text-muted h3 text-center my-5">You have no orders yet.</h2>
+</div>
+</section>

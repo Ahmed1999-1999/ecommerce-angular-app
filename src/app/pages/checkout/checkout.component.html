@@ -1,0 +1,53 @@
+<section class="bg-main-light p-4 my-5 rounded w-75 mx-auto shadow">
+  <form [formGroup]="checkoutForm" (ngSubmit)="handleForm()" class="my-3">
+
+    <!-- Details Form -->
+    <div class="mb-2">
+      <label for="details">Details:</label>
+      <textarea
+        #inputDetails
+        formControlName="details"
+        id="details"
+        class="form-control">
+      </textarea>
+        <!-- validation alert -->
+        <div class="alert alert-danger mt-2" *ngIf="checkoutForm.get('details')?.errors && (checkoutForm.get('details')?.touched || inputDetails.value.length > 0)">
+          <p *ngIf="checkoutForm.get('details')?.getError('required')">Your details is required</p>
+        </div>
+    </div>
+
+    <!-- Phone Form -->
+    <div class="mb-2">
+      <label for="phone">Phone</label>
+      <input
+      #inputPhone
+      formControlName="phone"
+        type="tel"
+        id="phone"
+        class="form-control">
+        <!-- validation alert -->
+        <div class="alert alert-danger mt-2" *ngIf="checkoutForm.get('phone')?.errors && (checkoutForm.get('rePassword')?.touched || inputPhone.value.length > 0)">
+          <p *ngIf="checkoutForm.get('phone')?.getError('required')">Your phone is required</p>
+          <p *ngIf="checkoutForm.get('phone')?.getError('pattern')">accept only egypt phone numbers</p>
+        </div>
+    </div>
+
+    <!-- City Form -->
+    <div class="mb-2">
+      <label for="city">City:</label>
+      <input
+        #inputCity
+        formControlName="city"
+        type="text"
+        id="city"
+        class="form-control">
+        <!-- validation alert -->
+        <div class="alert alert-danger mt-2" *ngIf="checkoutForm.get('city')?.errors && (checkoutForm.get('city')?.touched || inputCity.value.length > 0)">
+          <p *ngIf="checkoutForm.get('city')?.getError('required')">Your city name is required</p>
+        </div>
+    </div>
+    
+    <button [disabled]="checkoutForm.invalid" class="btn-main ms-auto d-block">Checkout</button>
+  </form>
+
+</section>

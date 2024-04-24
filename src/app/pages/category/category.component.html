@@ -1,0 +1,35 @@
+<section class="p-4 mx-2 my-3">
+  <h2 class="mb-5 h4">{{categoryName}}</h2>
+  <div class="row gy-5" #content>
+    <ng-container *ngFor="let product of categoryProducts">
+      <div *ngIf="product.category.name === categoryName" class=" py-2 col-md-2">
+        <div class="product p-2">
+          <div class="wishlist d-flex justify-content-between mb-2">
+            <!-- add -->
+          <i *ngIf="!productsInWishlist.includes(product._id)" (click)="addToWishlist(product._id)" class="far fa-heart fa-2x text-muted">
+          </i>
+          <!-- remove -->
+          <i *ngIf="productsInWishlist.includes(product._id)" (click)="removeFromWishlist(product._id)" class="fas fa-heart fa-2x text-danger">
+          </i>
+          </div>
+          <div [routerLink]="['/details', product._id]">
+            <img [src]="product.imageCover" [alt]="product.title" class="w-100 mb-2">
+            <h4 class="h6 mb-1 text-main fw-medium">{{product.category.name}}</h4>
+            <h5 class="h5 mb-4">{{product.title | tremtext : 2}}</h5>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+            <p class="mb-0">{{product.price | currency }}</p>
+              <div class="d-flex align-items-center">
+                <i class="fa fa-star rating-color"></i>
+                <span class="text-muted">{{product.ratingsAverage}}</span>
+              </div>
+            </div>
+          </div>
+          <button class="btn-main w-100" (click)="addProductToCart(product._id)">+Add To Cart</button>
+        </div>
+      </div>
+    </ng-container>
+    <div *ngIf="content.children.length == 0">
+      <h2 class="text-muted h3 text-center my-5">No Available Products.</h2>
+    </div>
+  </div>
+</section>
